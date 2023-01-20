@@ -33,6 +33,16 @@ public class UserRegistration {
         String fail = "No match found, Please Enter correct mobile number ...";
         return fail;
     }
+    public String isPasswordValid(String password){
+        String regex = "^(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        if(matcher.matches()){
+            return password;
+        }
+        String fail = "No match found, Please Enter correct  Password...";
+        return fail;
+    }
     public static void main(String[] args) {
         System.out.println("Welcome To Java Regex Program");
         Scanner scan = new Scanner(System.in);
@@ -60,6 +70,12 @@ public class UserRegistration {
         mobileNumber = scan.next();
         String mobileNum = userRegistration.isMobileNumValid(mobileNumber);
         System.out.println("Your mobile Number is :- "+mobileNum);
+
+        String password;
+        System.out.println("Enter your password");
+        password = scan.next();
+        String pass = userRegistration.isPasswordValid(password);
+        System.out.println("Your Password :- "+pass);
     }
 
 }
