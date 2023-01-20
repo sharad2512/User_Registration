@@ -34,7 +34,7 @@ public class UserRegistration {
         return fail;
     }
     public String isPasswordValid(String password){
-        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+        String regex = "^[0-9]{2}[/-]{1}[0-9]{10}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         if(matcher.matches()){
