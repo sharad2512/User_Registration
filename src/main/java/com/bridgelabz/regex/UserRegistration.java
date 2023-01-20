@@ -10,17 +10,27 @@ public class UserRegistration {
         if (matcher.matches()) {
             return name;
         }
-        String fail = "No match found";
+        String fail = "No match found , please Enter Correct Name";
         return fail;
     }
     public String email(String email){
-        String regex = "[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+        String regex = "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         if(matcher.matches()){
             return email;
         }
         String fail = "No match found, Please Enter correct validations for Email...";
+        return fail;
+    }
+    public String isMobileNumValid(String mobileNumber){
+        String mobileNumberRegex = "^[1-9]{2}[/-][0-9]{10}$";
+        Pattern pattern = Pattern.compile(mobileNumberRegex);
+        Matcher matcher = pattern.matcher(mobileNumber);
+        if(matcher.matches()){
+            return mobileNumber;
+        }
+        String fail = "No match found, Please Enter correct mobile number ...";
         return fail;
     }
     public static void main(String[] args) {
@@ -34,7 +44,7 @@ public class UserRegistration {
         System.out.println("Your First Name is :-"+result);
 
         String lastName;
-        System.out.println("Enter the first name With Starting First letter Should be in Capital:-");
+        System.out.println("Enter the Last name With Starting First letter Should be in Capital:-");
         lastName = scan.next();
         String lastname = userRegistration.FirstNameAndLastName(lastName);
         System.out.println("Your Last Name is:- "+lastName);
@@ -44,6 +54,12 @@ public class UserRegistration {
         emailId = scan.next();
         String email = userRegistration.email(emailId);
         System.out.println("Your Email Id is :- "+email);
+
+        String mobileNumber;
+        System.out.println("Enter Mobile Number (eg. 91 9876543210)");
+        mobileNumber = scan.next();
+        String mobileNum = userRegistration.isMobileNumValid(mobileNumber);
+        System.out.println("Your mobile Number is :- "+mobileNum);
     }
 
 }
