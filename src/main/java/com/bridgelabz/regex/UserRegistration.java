@@ -1,81 +1,42 @@
 package com.bridgelabz.regex;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 public class UserRegistration {
-    public String FirstNameAndLastName(String name) {
-        String regex = "[A-Z][a-z]{2,}";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(name);
-        if (matcher.matches()) {
-            return name;
+    public static void main(String[] args) throws IOException {
+
+        UserInputValidation userInputValidationUtil = new UserInputValidation();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.println("******* FIRSTNAME VALIDATION *******");
+            System.out.println("Please Enter first name: ");
+            String firstName = bufferedReader.readLine();
+            System.out.println(UserInputValidation.validateFirstName().validate(firstName) ? "Valid" : "InValid");
+            System.out.println("******* LASTNAME VALIDATION *******");
+            System.out.println("Please Enter last name: ");
+            String lastName = bufferedReader.readLine();
+            System.out.println(UserInputValidation.validateLastName().validate(lastName) ? "Valid" : "InValid");
+            System.out.println("******* EMAIL VALIDATION *******");
+            System.out.println("Please Enter email: ");
+            String email = bufferedReader.readLine();
+            System.out.println(UserInputValidation.validateEmail().validate(email) ? "Valid" : "InValid");
+            System.out.println("******* MOBILE FORMAT VALIDATION *******");
+            System.out.println("Please Enter Mobile Number: ");
+            String mobileNumber = bufferedReader.readLine();
+            System.out.println(UserInputValidation.validateMobileNumber().validate(mobileNumber) ? "Valid" : "InValid");
+            System.out.println("******* PASSWORD VALIDATION *******");
+            System.out.println("Please Enter Password: ");
+            String password = bufferedReader.readLine();
+            System.out.println(UserInputValidation.validatePassword().validate(password) ? "Valid" : "InValid");
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-        String fail = "No match found , please Enter Correct Name";
-        return fail;
-    }
-    public String email(String email){
-        String regex = "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        if(matcher.matches()){
-            return email;
+
+        try {
+            bufferedReader.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-        String fail = "No match found, Please Enter correct validations for Email...";
-        return fail;
     }
-    public String isMobileNumValid(String mobileNumber){
-        String mobileNumberRegex = "^[1-9]{2}[/-][0-9]{10}$";
-        Pattern pattern = Pattern.compile(mobileNumberRegex);
-        Matcher matcher = pattern.matcher(mobileNumber);
-        if(matcher.matches()){
-            return mobileNumber;
-        }
-        String fail = "No match found, Please Enter correct mobile number ...";
-        return fail;
-    }
-    public String isPasswordValid(String password){
-        String regex = "^[0-9]{2}[/-]{1}[0-9]{10}$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(password);
-        if(matcher.matches()){
-            return password;
-        }
-        String fail = "No match found, Please Enter correct  Password...";
-        return fail;
-    }
-    public static void main(String[] args) {
-        System.out.println("Welcome To Java Regex Program");
-        Scanner scan = new Scanner(System.in);
-        UserRegistration userRegistration = new UserRegistration();
-        String name;
-        System.out.println("Enter the first name With Starting First letter Should be in Capital:-");
-        name = scan.next();
-        String result = userRegistration.FirstNameAndLastName(name);
-        System.out.println("Your First Name is :-"+result);
-
-        String lastName;
-        System.out.println("Enter the Last name With Starting First letter Should be in Capital:-");
-        lastName = scan.next();
-        String lastname = userRegistration.FirstNameAndLastName(lastName);
-        System.out.println("Your Last Name is:- "+lastName);
-
-        String emailId;
-        System.out.println("Enter your email Id");
-        emailId = scan.next();
-        String email = userRegistration.email(emailId);
-        System.out.println("Your Email Id is :- "+email);
-
-        String mobileNumber;
-        System.out.println("Enter Mobile Number (eg. 91 9876543210)");
-        mobileNumber = scan.next();
-        String mobileNum = userRegistration.isMobileNumValid(mobileNumber);
-        System.out.println("Your mobile Number is :- "+mobileNum);
-
-        String password;
-        System.out.println("Enter your password");
-        password = scan.next();
-        String pass = userRegistration.isPasswordValid(password);
-        System.out.println("Your Password :- "+pass);
-    }
-
 }
